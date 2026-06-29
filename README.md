@@ -23,8 +23,7 @@ In quantitative production pipelines, standard loops (`for`, `while`) are prohib
 Applying the previous concepts to real-world financial time-series data:
 * **[Returns](./Quant_fundamentals/Returns) & [Moving Averages](./Quant_fundamentals/Moving_average):** Logarithmic returns calculation, handling look-ahead bias, and generating momentum signals using Pandas rolling windows.
 * **[Portfolio Optimization](./Quant_fundamentals/Portfolio_optimization):** Modeling Markowitz Efficient Frontier and implementing optimization algorithms to maximize the Sharpe Ratio.
-* **Portfolio Optimization Preview:**
-![Efficient Frontier](./Quant_fundamentals/Portfolio_optimization/portfolio.png)
+
 
 ---
 
@@ -34,7 +33,7 @@ Moving away from isolated academic exercises, I am now focusing on building comp
 
 ---
 
-## 🛠️ Tech Stack
+# Tech Stack
 * **Language:** Python 3.x
 * **Core Libraries:** 
   * **NumPy:** Vectorized linear algebra & matrix operations.
