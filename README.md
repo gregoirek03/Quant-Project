@@ -1,5 +1,7 @@
 # 📈 Quant Finance Laboratory
 
+<div style="text-align: justify;">
+
 Welcome to my quantitative finance research repository. This project is divided into two distinct development phases: a foundational research hub to master core mechanics, followed by production-grade financial engineering applications.
 
 The primary objective of this **`Quant_fundamentals`** section is to deeply assimilate the mathematical and statistical foundations of quantitative asset management. To ensure a thorough, low-level understanding of numerical optimization and statistical mechanics, every single formula, algorithm, and objective function has been coded entirely from scratch using Python, avoiding any pre-existing high-level machine learning libraries (such as Scikit-Learn).
@@ -87,3 +89,5 @@ Quant_fundamentals/
 * **Numerical Computing:** `NumPy` (Vectorized BLAS/LAPACK routines utilizing the high-performance `@` matrix operator)
 * **Data Management:** `Pandas` (Engineered for optimized time-series DataFrame mechanics)
 * **Optimization & Plotting:** `SciPy` (`optimize` engine) & `Matplotlib` (Data visualization)
+
+</div>
