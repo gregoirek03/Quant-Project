@@ -47,11 +47,11 @@ Quant_fundamentals/
 * **Concepts:** Mathematical implementation of Ordinary Least Squares (OLS) via the Normal Equation, Ridge Regression ($L_2$ regularization), and LASSO ($L_1$ regularization).
 * **Algorithms:** Designed and built a custom **Coordinate Descent** engine from scratch. It integrates a **Soft-Thresholding** operator for the LASSO model to perform sparse feature selection, effectively zeroing out irrelevant coefficients to isolate true alpha signals from structural market noise.
 
-| Model / Objective | Key Mathematical Formula | Regularization |
+| Model | Key Mathematical Formula | Regularization |
 | :--- | :--- | :--- |
-| **OLS Objective** | $$\min_{\beta}  \|y - X\beta\|_2^2$$ | None |
-| **Ridge Objective** | $$\min_{\beta}  \|y - X\beta\|_2^2 + \lambda \|\beta\|_2^2$$ | $L_2$ (Coefficients Shrinkage) |
-| **LASSO Objective** | $$\min_{\beta} \|y - X\beta\|_2^2 + \lambda \|\beta\|_1$$ | $L_1$ (Feature Selection) |
+| **OLS** | $$\min_{\beta}  \|y - X\beta\|_2^2$$ | None |
+| **Ridge** | $$\min_{\beta}  \|y - X\beta\|_2^2 + \lambda \|\beta\|_2^2$$ | $L_2$ (Coefficients Shrinkage) |
+| **LASSO** | $$\min_{\beta}  \|y - X\beta\|_2^2 + \lambda \|\beta\|_1$$ | $L_1$ (Feature Selection) |
 
 ---
 
