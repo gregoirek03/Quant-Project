@@ -1,8 +1,8 @@
 import numpy as np
 
-# =====================================================================
+# ==========================================
 # 1. MODÈLE OLS (Moindres Carrés Ordinaires)
-# =====================================================================
+# ==========================================
 def fit_ols(X: np.ndarray, Y: np.ndarray, fit_intercept: bool = True) -> np.ndarray:
     """Calcule les coefficients beta par la méthode OLS (stable)."""
     if fit_intercept:
@@ -21,9 +21,9 @@ def predict_ols(X: np.ndarray, beta: np.ndarray, fit_intercept: bool = True) -> 
         X_b = X
     return X_b @ beta
 
-# =====================================================================
+# =============================
 # 2. MODÈLE RIDGE (Pénalité L2)
-# =====================================================================
+# =============================
 def fit_ridge(X: np.ndarray, Y: np.ndarray, lam: float = 1.0, fit_intercept: bool = True) -> np.ndarray:
     """Calcule les coefficients de la régression Ridge (Pénalité L2)."""
     if fit_intercept:
@@ -50,11 +50,12 @@ def predict_ridge(X: np.ndarray, beta: np.ndarray, fit_intercept: bool = True) -
         X_b = X
     return X_b @ beta
 
-# =====================================================================
+# =========================================================
 # 3. MODÈLE LASSO (Pénalité L1 par Descente de Coordonnées)
-# =====================================================================
+# =========================================================
 def seuillage_doux(rho: float, lam: float) -> float:
     """Opérateur de seuillage doux (Soft Thresholding) pour le LASSO."""
+    # rho = coefficient de corrélation
     if rho < -lam:
         return rho + lam
     elif rho > lam:
@@ -67,17 +68,24 @@ def fit_lasso(X: np.ndarray, y: np.ndarray, lam: float, max_iter: int = 500, eps
     n_samples, n_features = X.shape
     intercept = 0.0
     beta = np.zeros(n_features)
+    # on initialise tous les coefficients beta à 0
     
     for _ in range(max_iter):
         beta_old = beta.copy()
+        # sauvegarde des anciens beta
         intercept = np.mean(y - (X @ beta))
+        # recalcul de l'intercept comme moyenne des écarts
         
         for j in range(n_features):
             y_pred_without_j = intercept + (X @ beta) - (beta[j] * X[:, j])
+            # X[:, j] = colonne j de X
             r = y - y_pred_without_j
             rho = X[:, j] @ r
+            # rho mesure à quel point la variable j est corrélationnelle avec l'erreur qu'il reste à combler. 
+            # Si rho est grand, la variable j est très utile pour corriger l'erreur.
             
             denominator = np.sum(X[:, j]**2)
+            # norme de la colonne j --> normalisation
             beta[j] = seuillage_doux(rho, lam * n_samples) / denominator
             
         if np.linalg.norm(beta - beta_old) < epsilon:
