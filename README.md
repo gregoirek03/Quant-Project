@@ -19,10 +19,22 @@ To build institutional-grade trading systems, one must first master the underlyi
 
 ## 🗂️ Repository Architecture
 
-* **Linear_regression/** -> Continuous modeling & regularizations (L1/L2)
-* **Logistic_regression/** -> Binary classification & custom optimization
-* **Portfolio_optimization/** -> Modern Portfolio Theory (MPT) & Sharpe Max
-* **Numerical_methods/** -> Time-series vectorization & stochastic models
+```text
+Quant_fundamentals/
+├── Linear_regression/        # Continuous modeling & regularizations (L1/L2)
+│   ├── linear_models.py
+│   └── benchmark_linear.ipynb
+├── Logistic_regression/      # Binary classification & custom optimization
+│   ├── logistic_models.py
+│   └── benchmark_logistic.ipynb
+├── Portfolio_optimization/   # Modern Portfolio Theory (MPT) & Sharpe Max
+│   ├── portfolio_optimizer.py
+│   └── benchmark_portfolio.ipynb
+└── Numerical_methods/        # Time-series vectorization & stochastic models
+    ├── numerical_tools.py
+    └── benchmark_numerical.ipynb
+
+```
 
 ---
 
