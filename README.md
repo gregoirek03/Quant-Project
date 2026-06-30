@@ -1,7 +1,5 @@
 # 📈 Quant Finance Laboratory
 
-<div style="text-align: justify;">
-
 Welcome to my quantitative finance research repository. This project is divided into two distinct development phases: a foundational research hub to master core mechanics, followed by production-grade financial engineering applications.
 
 The primary objective of this **`Quant_fundamentals`** section is to deeply assimilate the mathematical and statistical foundations of quantitative asset management. To ensure a thorough, low-level understanding of numerical optimization and statistical mechanics, every single formula, algorithm, and objective function has been coded entirely from scratch using Python, avoiding any pre-existing high-level machine learning libraries (such as Scikit-Learn).
@@ -42,13 +40,18 @@ Quant_fundamentals/
 
 ## 🧠 Technical Overview of Modules
 
+---
+
 ### 1. Linear Regression & Regularization (`Linear_regression`)
 
 * **Concepts:** Mathematical implementation of Ordinary Least Squares (OLS) via the Normal Equation, Ridge Regression ($L_2$ regularization), and LASSO ($L_1$ regularization).
 * **Algorithms:** Designed and built a custom **Coordinate Descent** engine from scratch. It integrates a **Soft-Thresholding** operator for the LASSO model to perform sparse feature selection, effectively zeroing out irrelevant coefficients to isolate true alpha signals from structural market noise.
 
-> **Key Formula (LASSO Objective):**
-> $$\min_{\beta} \frac{1}{2n} \|y - X\beta\|_2^2 + \lambda \|\beta\|_1$$
+| Model / Objective | Key Mathematical Formula | Regularization |
+| :--- | :--- | :--- |
+| **OLS Objective** | $$\min_{\beta} \frac{1}{2n} \|y - X\beta\|_2^2$$ | None |
+| **Ridge Objective** | $$\min_{\beta} \frac{1}{2n} \|y - X\beta\|_2^2 + \lambda \|\beta\|_2^2$$ | $L_2$ (Coefficients Shrinkage) |
+| **LASSO Objective** | $$\min_{\beta} \frac{1}{2n} \|y - X\beta\|_2^2 + \lambda \|\beta\|_1$$ | $L_1$ (Feature Selection) |
 
 ---
 
@@ -57,19 +60,24 @@ Quant_fundamentals/
 * **Concepts:** Probabilistic binary modeling optimized for quantitative trend forecasting (Up/Down market direction) and conditional credit default risk estimation.
 * **Algorithms:** Vectorized Gradient Descent minimizing the *Cross-Entropy* loss function (Log Loss). Model performance is rigorously evaluated through a manual, raw-matrix implementation of a **Confusion Matrix** (tracking True/False Positives & Negatives) alongside custom accuracy metrics.
 
-| Metric | Formula | Target |
+| Performance Metric | Mathematical Formula | Target Objective |
 | :--- | :--- | :--- |
-| **Log Loss** | $-\frac{1}{n}\sum [y\ln(\hat{y}) + (1-y)\ln(1-\hat{y})]$ | Minimize |
-| **Accuracy** | $\frac{TP + TN}{TP + TN + FP + FN}$ | Maximize |
+| **Log Loss** | $$-\frac{1}{n}\sum_{i=1}^n \left[ y_i\ln(\hat{y}_i) + (1-y_i)\ln(1-\hat{y}_i) \right]$$ | Minimize Error |
+| **Accuracy** | $$\frac{TP + TN}{TP + TN + FP + FN}$$ | Maximize Correct Hits |
 
 ---
 
 ### 3. Portfolio Optimization (`Portfolio_optimization`)
 
 * **Concepts:** Operational and tactical application of Harry Markowitz's Modern Portfolio Theory (MPT).
-* **Algorithms:** Expressed portfolio volatility via a vectorized quadratic form ($W^T \Sigma W$). Leveraged SciPy's non-linear `optimize.minimize` (using the SLSQP engine) to dynamically compute the asset allocation weights that maximize the **Sharpe Ratio** under strict constraints:
-    * **Budget Constraint:** $\sum w_i = 1.0$ (100% capital allocation).
-    * **Boundary Constraint:** Long-only portfolio ($0.0 \le w_i \le 1.0$, no short-selling).
+* **Algorithms:** Expressed portfolio volatility via a vectorized quadratic form ($W^T \Sigma W$). Leveraged SciPy's non-linear `optimize.minimize` (using the SLSQP engine) to dynamically compute the asset allocation weights that maximize the **Sharpe Ratio** under strict constraints.
+
+| Optimization Parameter | Mathematical Formulation | Operational Boundary |
+| :--- | :--- | :--- |
+| **Portfolio Volatility** | $$\sigma_p = \sqrt{W^T \Sigma W}$$ | Risk Matrix |
+| **Sharpe Ratio (Max)** | $$\text{Sharpe} = \frac{W^T R - R_f}{\sqrt{W^T \Sigma W}}$$ | Target Objective ($R_f = 0$) |
+| **Budget Constraint** | $$\sum_{i=1}^N w_i = 1.0$$ | Fully Invested |
+| **Long-Only Bounds** | $$0.0 \le w_i \le 1.0$$ | No Short-Selling |
 
 ---
 
@@ -78,16 +86,11 @@ Quant_fundamentals/
 * **Concepts:** High-performance computational processing of financial time-series data and robust stochastic simulation engines.
 * **Algorithms:**
     * **Vectorization Benchmark:** Execution speed analysis demonstrating the massive runtime drop achieved by replacing sequential Python `for` loops with vectorized, pre-compiled C-routines built inside NumPy and Pandas.
-    * **Monte Carlo Simulation:** Future asset price-path generator based on **Geometric Brownian Motion (GBM)** (the Black-Scholes SDE framework) optimized via matrix exponentiation and cumulative products.
+    * **Monte Carlo Simulation:** Future asset price-path generator based on **Geometric Brownian Motion (GBM)** optimized via matrix exponentiation and cumulative products.
     * **Returns Engine:** Multi-dimensional analytical functions computing arithmetic and logarithmic returns, capitalizing on time-additivity properties for asset modeling.
 
----
-
-## 🛠️ Tech Stack
-
-* **Core Language:** Python 3.12+
-* **Numerical Computing:** `NumPy` (Vectorized BLAS/LAPACK routines utilizing the high-performance `@` matrix operator)
-* **Data Management:** `Pandas` (Engineered for optimized time-series DataFrame mechanics)
-* **Optimization & Plotting:** `SciPy` (`optimize` engine) & `Matplotlib` (Data visualization)
-
-</div>
+| Stochastic / Time-Series Engine | Stochastic Differential Equation (SDE) & Analytical Solution |
+| :--- | :--- |
+| **Geometric Brownian Motion (SDE)** | $$dS_t = \mu S_t dt + \sigma S_t dW_t$$ |
+| **GBM Discrete Solution (Monte Carlo)** | $$S_{t+\Delta t} = S_t \exp\left( \left(\mu - \frac{1}{2}\sigma^2\right)\Delta t + \sigma\sqrt{\Delta t}Z \right), \quad Z \sim \mathcal{N}(0,1)$$ |
+| **Logarithmic Returns** | $$r_t = \ln(P_t) - \ln(P_{t-1})$$ |
