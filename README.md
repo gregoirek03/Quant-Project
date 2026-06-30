@@ -33,3 +33,55 @@ Quant_fundamentals/
 └── Numerical_methods/        # Time-series vectorization & stochastic models
     ├── numerical_tools.py
     └── benchmark_numerical.ipynb
+
+## 🧠 Technical Overview of Modules
+
+---
+
+### 1. Linear Regression & Regularization (`Linear_regression`)
+
+* **Concepts:** Mathematical implementation of Ordinary Least Squares (OLS) via the Normal Equation, Ridge Regression ($L_2$ regularization), and LASSO ($L_1$ regularization).
+* **Algorithms:** Designed and built a custom **Coordinate Descent** engine from scratch. It integrates a **Soft-Thresholding** operator for the LASSO model to perform sparse feature selection, effectively zeroing out irrelevant coefficients to isolate true alpha signals from structural market noise.
+
+> **Key Formula (LASSO Objective):**
+> $$\min_{\beta} \frac{1}{2n} \|y - X\beta\|_2^2 + \lambda \|\beta\|_1$$
+
+---
+
+### 2. Logistic Regression & Classification (`Logistic_regression`)
+
+* **Concepts:** Probabilistic binary modeling optimized for quantitative trend forecasting (Up/Down market direction) and conditional credit default risk estimation.
+* **Algorithms:** Vectorized Gradient Descent minimizing the *Cross-Entropy* loss function (Log Loss). Model performance is rigorously evaluated through a manual, raw-matrix implementation of a **Confusion Matrix** (tracking True/False Positives & Negatives) alongside custom accuracy metrics.
+
+| Metric | Formula | Target |
+| :--- | :--- | :--- |
+| **Log Loss** | $-\frac{1}{n}\sum [y\ln(\hat{y}) + (1-y)\ln(1-\hat{y})]$ | Minimize |
+| **Accuracy** | $\frac{TP + TN}{TP + TN + FP + FN}$ | Maximize |
+
+---
+
+### 3. Portfolio Optimization (`Portfolio_optimization`)
+
+* **Concepts:** Operational and tactical application of Harry Markowitz's Modern Portfolio Theory (MPT).
+* **Algorithms:** Expressed portfolio volatility via a vectorized quadratic form ($W^T \Sigma W$). Leveraged SciPy's non-linear `optimize.minimize` (using the SLSQP engine) to dynamically compute the asset allocation weights that maximize the **Sharpe Ratio** under strict constraints:
+    * **Budget Constraint:** $\sum w_i = 1.0$ (100% capital allocation).
+    * **Boundary Constraint:** Long-only portfolio ($0.0 \le w_i \le 1.0$, no short-selling).
+
+---
+
+### 4. Numerical Methods & Performance (`Numerical_methods`)
+
+* **Concepts:** High-performance computational processing of financial time-series data and robust stochastic simulation engines.
+* **Algorithms:**
+    * **Vectorization Benchmark:** Execution speed analysis demonstrating the massive runtime drop achieved by replacing sequential Python `for` loops with vectorized, pre-compiled C-routines built inside NumPy and Pandas.
+    * **Monte Carlo Simulation:** Future asset price-path generator based on **Geometric Brownian Motion (GBM)** (the Black-Scholes SDE framework) optimized via matrix exponentiation and cumulative products.
+    * **Returns Engine:** Multi-dimensional analytical functions computing arithmetic and logarithmic returns, capitalizing on time-additivity properties for asset modeling.
+
+---
+
+## 🛠️ Tech Stack
+
+* **Core Language:** Python 3.12+
+* **Numerical Computing:** `NumPy` (Vectorized BLAS/LAPACK routines utilizing the high-performance `@` matrix operator)
+* **Data Management:** `Pandas` (Engineered for optimized time-series DataFrame mechanics)
+* **Optimization & Plotting:** `SciPy` (`optimize` engine) & `Matplotlib` (Data visualization)
