@@ -49,9 +49,9 @@ Quant_fundamentals/
 
 | Model / Objective | Key Mathematical Formula | Regularization |
 | :--- | :--- | :--- |
-| **OLS Objective** | $$\min_{\beta} \frac{1}{2n} \|y - X\beta\|_2^2$$ | None |
+| **OLS Objective** | $$\min_{\beta}  \|y - X\beta\|_2^2$$ | None |
 | **Ridge Objective** | $$\min_{\beta}  \|y - X\beta\|_2^2 + \lambda \|\beta\|_2^2$$ | $L_2$ (Coefficients Shrinkage) |
-| **LASSO Objective** | $$\min_{\beta} \frac{1}{2n} \|y - X\beta\|_2^2 + \lambda \|\beta\|_1$$ | $L_1$ (Feature Selection) |
+| **LASSO Objective** | $$\min_{\beta} \|y - X\beta\|_2^2 + \lambda \|\beta\|_1$$ | $L_1$ (Feature Selection) |
 
 ---
 
