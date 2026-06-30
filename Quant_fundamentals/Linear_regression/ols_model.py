@@ -1,7 +1,9 @@
 import numpy as np
 
 def fit_ols(X: np.ndarray, Y: np.ndarray, fit_intercept: bool = True) -> np.ndarray:
-# Calcule les coefficients beta par la méthode des Moindres Carrés Ordinaires (OLS)
+    """
+    Calcule les coefficients beta par la méthode des Moindres Carrés Ordinaires (OLS)
+    """
     
     if fit_intercept: # on inclut une constante au modèle (ordonnée à l'origine)
         ones = np.ones((X.shape[0], 1))
