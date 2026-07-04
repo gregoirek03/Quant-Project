@@ -1,6 +1,10 @@
 import numpy as np
 import pandas as pd
 
+# =================================
+# 1. CALCUL D'UNE MOYENNE GLISSANTE
+# =================================
+
 def calculate_moving_average(prices: np.ndarray, window: int) -> pd.Series:
     """
     Calcule une moyenne mobile glissante de manière hautement vectorisée.
@@ -8,6 +12,10 @@ def calculate_moving_average(prices: np.ndarray, window: int) -> pd.Series:
     """
     s = pd.Series(prices)
     return s.rolling(window=window).mean()
+
+# ========================
+# 2. MODÈLE DE MONTE-CARLO
+# ========================
 
 def simulate_monte_carlo(start_price: float, mu: float, sigma: float, days: int, n_simulations: int, seed: int = 42) -> np.ndarray:
     """
@@ -30,6 +38,10 @@ def simulate_monte_carlo(start_price: float, mu: float, sigma: float, days: int,
     # On ajoute le prix de départ sur la première ligne
     initial_row = np.full((1, n_simulations), start_price)
     return np.vstack((initial_row, price_paths))
+
+# ======================
+# 3. CALCUL DU RENDEMENT
+# ======================
 
 def calculate_arithmetic_returns(prices: np.ndarray) -> np.ndarray:
     """
