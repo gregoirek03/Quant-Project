@@ -219,3 +219,8 @@ __marimo__/
 
 **/__pycache__/
 *.pyc
+
+# Local financial data
+data/
+*.csv
+*.parquet
