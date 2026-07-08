@@ -35,7 +35,7 @@ def fit_ridge(X: np.ndarray, Y: np.ndarray, lam: float = 1.0, fit_intercept: boo
     n_features = X_b.shape[1]
     I = np.eye(n_features)
     if fit_intercept:
-        I[0, 0] = 0  # On ne pénalise pas la constante
+        I[0, 0] = 0  # on ne pénalise pas la constante
         
     A = (X_b.T @ X_b) + (lam * I)
     b = X_b.T @ Y
@@ -82,7 +82,7 @@ def fit_lasso(X: np.ndarray, y: np.ndarray, lam: float, max_iter: int = 500, eps
             r = y - y_pred_without_j
             rho = X[:, j] @ r
             # rho mesure à quel point la variable j est corrélationnelle avec l'erreur qu'il reste à combler. 
-            # Si rho est grand, la variable j est très utile pour corriger l'erreur.
+            # si rho est grand, la variable j est très utile pour corriger l'erreur.
             
             denominator = np.sum(X[:, j]**2)
             # norme de la colonne j --> normalisation
