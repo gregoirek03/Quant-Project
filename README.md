@@ -1,42 +1,75 @@
-Markdown# 📈 Quant Finance Laboratory
+📈 Quant Finance Laboratory
 
-Welcome to my quantitative finance research repository. This project bridges pure academic foundations with production-grade financial engineering applications, structured across modular development phases.
+Welcome to my quantitative finance research repository. This project is divided into two distinct development phases: a foundational research hub to master core mechanics, followed by production-grade financial engineering applications.
 
-The primary objective of this laboratory is to deeply assimilate the mathematical and statistical foundations of quantitative asset management, moving from raw numerical optimization to robust multi-asset framework execution.
+The primary objective of this Quant_fundamentals section is to deeply assimilate the mathematical and statistical foundations of quantitative asset management. To ensure a thorough, low-level understanding of numerical optimization and statistical mechanics, every single formula, algorithm, and objective function has been coded entirely from scratch using Python, avoiding any pre-existing high-level machine learning libraries (such as Scikit-Learn).
 
-Every directory follows a production-grade layout: a standalone core engineering file ( `.py` ) containing pure vectorized functions, paired with a comprehensive research notebook ( `.ipynb` ) acting as a visual validation lab.
+Every directory follows a production-grade layout: a standalone core engineering file (.py) containing pure vectorized functions, paired with a comprehensive research notebook (.ipynb) acting as a visual validation lab.
 
----
-
-## 🚀 Project Roadmap: From Theory to Production
+🚀 Project Roadmap: From Theory to Production
 
 To build institutional-grade trading systems, one must first master the underlying mathematics. This repository mirrors that exact professional progression:
 
-- **Phase 1: Quant Fundamentals (Proprietary Math Hub):** Deep-dive into raw implementations from scratch (Optimization, SDEs, Matrix Regressions) to avoid pre-existing black-box libraries.
-- **Phase 2: Advanced Production Frameworks (Current Focus):** Leveraging fundamental building blocks to deploy large-scale vectorized backtesting engines, risk-management systems, and hybrid cross-asset strategy evaluations.
+Phase 1: Quant Fundamentals (Current Hub): Deep-dive into raw implementations (Optimization, SDEs, Matrix Regressions). This acts as our proprietary math library.
 
----
+Phase 2: Advanced Projects (Next Hub): Leveraging our fundamental blocks to build large-scale systems, including Vectorized Backtesting Engines (SMA/RSI strategies with real-world data), Statistical Arbitrage (Pairs Trading) frameworks, and alternative data pipelines.
 
-## 🗂️ Repository Architecture
+🗂️ Repository Architecture
 
-```text
-Quant_Project/
-├── Quant_fundamentals/
-│   ├── Linear_regression/        # Continuous modeling & regularizations (L1/L2)
-│   │   ├── linear_models.py
-│   │   └── benchmark_linear.ipynb
-│   ├── Logistic_regression/      # Binary classification & custom optimization
-│   │   ├── logistic_models.py
-│   │   └── benchmark_logistic.ipynb
-│   ├── Portfolio_optimization/   # Modern Portfolio Theory (MPT) & Sharpe Max
-│   │   ├── portfolio_optimizer.py
-│   │   └── benchmark_portfolio.ipynb
-│   └── Numerical_methods/        # Time-series vectorization & stochastic models
-│       ├── numerical_tools.py
-│       └── benchmark_numerical.ipynb
-│
-└── Advanced_backtesting/         # Phase 2: Production Vectorized Engine
-    ├── backtest_engine.py        # Core computational engine (Higher-moment risks)
-    ├── benchmark_backtest.ipynb  # Empirical Research & Cross-Asset Lab
-    └── heatmap_results.png       # Generated performance visualizer
-🧠 Technical Overview of Modules1. Advanced Backtesting Framework (Advanced_backtesting)Concepts: Event-free vectorized execution modeling institutional market frictions, asset class regime variations, and conditional strategy filtering.Risk Architecture: Moves beyond traditional returns to compute higher-moment statistics (SciPy Stats) including Sortino Ratio, Downside Deviation, Skewness, and Kurtosis to detect empirical Fat Tails.Strategies Implemented: Fast/Slow SMA Crossover, Bollinger Bands Mean Reversion, and a Trend-Filtered Hybrid Framework (triggers mean-reversion buying only during verified long-term macroeconomic uptrends).2. Linear Regression & Regularization (Linear_regression)Concepts: Mathematical implementation of Ordinary Least Squares (OLS) via the Normal Equation, Ridge Regression (L2 regularization), and LASSO (L1 regularization).Algorithms: Designed and built a custom Coordinate Descent engine from scratch. It integrates a Soft-Thresholding operator for the LASSO model to perform sparse feature selection, effectively zeroing out irrelevant coefficients to isolate true alpha signals from structural market noise.3. Logistic Regression & Classification (Logistic_regression)Concepts: Probabilistic binary modeling optimized for quantitative trend forecasting (Up/Down market direction) and conditional credit default risk estimation.Algorithms: Vectorized Gradient Descent minimizing the Cross-Entropy loss function (Log Loss). Model performance is rigorously evaluated through a manual, raw-matrix implementation of a Confusion Matrix (tracking True/False Positives & Negatives) alongside custom accuracy metrics.4. Portfolio Optimization (Portfolio_optimization)Concepts: Operational and tactical application of Harry Markowitz's Modern Portfolio Theory (MPT).Algorithms: Expressed portfolio volatility via a vectorized quadratic form ($W^T\Sigma W$). Leveraged SciPy's non-linear optimize.minimize (using the SLSQP engine) to dynamically compute the asset allocation weights that maximize the Sharpe Ratio under strict constraints.5. Numerical Methods & Performance (Numerical_methods)Concepts: High-performance computational processing of financial time-series data and robust stochastic simulation engines.Algorithms: Execution speed analysis demonstrating the massive runtime drop achieved by replacing sequential Python for loops with vectorized, pre-compiled C-routines built inside NumPy and Pandas. Future asset price-path generator based on Geometric Brownian Motion (GBM) optimized via matrix exponentiation and cumulative products.Returns Engine: Multi-dimensional analytical functions computing arithmetic and logarithmic returns, capitalizing on time-additivity properties for asset modeling.📊 Phase 2: Empirical Research & InsightsOur multi-asset simulations conducted between 2016 and 2026 across diverse asset classes (S&P 500, Bitcoin, Gold, Apple) generated crucial structural insights regarding market microstructures:Trend vs. Mean Reversion: The Bitcoin (BTC-USD) backtest highlighted the dominance of Trend-Following models due to its historically parabolic trends, whereas standard Bollinger Bands suffered from a severe "falling knife" syndrome without structural filters.The Power of Conditioning: By introducing the Trend-Filtered Hybrid Strategy, we successfully neutralized false mean-reversion signals during broad market corrections on the S&P 500 (SPY) and Apple (AAPL), significantly boosting overall Sortino and Sharpe ratios while stabilizing the equity curve.Strategy Cross-Asset Showdown (Net of 10 bps Frictions)⚙️ Core DependenciesPython >= 3.9Pandas / NumPy / SciPy (Stats & Optimize)Matplotlib / Seabornyfinance
+Quant_fundamentals/
+├── Linear_regression/        # Continuous modeling & regularizations (L1/L2)
+│   ├── linear_models.py
+│   └── benchmark_linear.ipynb
+├── Logistic_regression/      # Binary classification & custom optimization
+│   ├── logistic_models.py
+│   └── benchmark_logistic.ipynb
+├── Portfolio_optimization/   # Modern Portfolio Theory (MPT) & Sharpe Max
+│   ├── portfolio_optimizer.py
+│   └── benchmark_portfolio.ipynb
+└── Numerical_methods/        # Time-series vectorization & stochastic models
+    ├── numerical_tools.py
+    └── benchmark_numerical.ipynb
+
+🧠 Technical Overview of Modules
+
+1. Advanced Backtesting Framework (Advanced_backtesting)
+
+Concepts: Event-free vectorized execution modeling institutional market frictions, asset class regime variations, and conditional strategy filtering.
+
+Risk Architecture: Moves beyond traditional returns to compute higher-moment statistics (SciPy Stats) including Sortino Ratio, Downside Deviation, Skewness, and Kurtosis to detect empirical Fat Tails.
+
+Strategies Implemented: Fast/Slow SMA Crossover, Bollinger Bands Mean Reversion, and a Trend-Filtered Hybrid Framework (triggers mean-reversion buying only during verified long-term macroeconomic uptrends).
+
+2. Linear Regression & Regularization (Linear_regression)
+
+Algorithms: Designed and built a custom Coordinate Descent engine from scratch. It integrates a Soft-Thresholding operator for the LASSO model to perform sparse feature selection, effectively zeroing out irrelevant coefficients to isolate true alpha signals from structural market noise.
+
+3. Portfolio Optimization (Portfolio_optimization)
+
+Algorithms: Expressed portfolio volatility via a vectorized quadratic form ($W^T\Sigma W$). Leveraged SciPy's non-linear optimize.minimize (SLSQP) to dynamically compute the asset allocation weights that maximize the Sharpe Ratio under strict budget and long-only constraints.
+
+4. Numerical Methods & Performance (Numerical_methods)
+
+Algorithms: Execution speed analysis demonstrating runtime drops via C-routine vectorization inside NumPy. Future asset price-path generator based on Geometric Brownian Motion (GBM) via stochastic discrete solution paths.
+
+📊 Phase 2: Empirical Research & Insights
+
+Our multi-asset simulations conducted between 2016 and 2026 across diverse asset classes (S&P 500, Bitcoin, Gold, Apple) generated crucial structural insights:
+
+Trend vs. Mean Reversion: The Bitcoin (BTC-USD) backtest highlighted the dominance of Trend-Following models due to its historically parabolic trends, whereas standard Bollinger Bands suffered from "falling knife" syndrome without structural filters.
+
+The Power of Conditioning: By introducing the Trend-Filtered Hybrid Strategy, we successfully neutralized false mean-reversion signals during broad market corrections on the S&P 500 (SPY) and Apple (AAPL), significantly boosting overall Sortino and Sharpe ratios.
+
+Strategy Cross-Asset Showdown (Net of 10 bps Frictions)
+
+![Strategy Sharpe Comparison](Advanced_backtesting/heatmap_results.png)
+
+⚙️ Core Dependencies
+
+Python >= 3.9
+
+Pandas / NumPy / SciPy (Stats & Optimize)
+
+Matplotlib / Seaborn
+
+yfinance
